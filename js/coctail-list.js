@@ -1,5 +1,28 @@
 var resultContentEl = document.querySelector('#result-content');
 
+var time = 3;
+function displayLoading() {
+  const load_gif = "https://media.giphy.com/media/sEH3lMz5hMBEc/giphy.gif";
+  var messageEl = document.createElement("p3");
+  messageEl.setAttribute("class", "loading-msg");
+  messageEl.textContent = "Your drink will be out shortly...";
+  resultContentEl.append(messageEl);
+  resultContentEl.append(document.createElement("br"));
+
+  var imgEl = document.createElement("img");
+  imgEl.setAttribute("src", load_gif);
+  resultContentEl.append(imgEl);
+
+  //timeEl.textContent = "Your cocktail will be right"
+  var timeInterval = setInterval(function () {
+    time--;
+    if (time === 0) {
+      clearInterval(time);
+      getParams();
+    }
+  }, 1000);
+}
+
 function getParams() {
   //get the search param(ingredient) out of the URL
   var ingredient_val = document.location.search;
@@ -34,8 +57,6 @@ function printResults(resultObj, rowNum) {
       return response.json();
     }).then(drinkRes => {
       //set up "<DIV>" to hold result content
-      console.log(drinkRes.drinks[0]);
-
       var drinkItem = drinkRes.drinks[0];
 
       var resultCol = document.createElement('div');
@@ -80,9 +101,6 @@ function printResults(resultObj, rowNum) {
         var ingrTemp = drinkItem[`strIngredient${i}`];
         var measTemp = drinkItem[`strMeasure${i}`];
 
-        console.log("ingre:" + ingrTemp);
-        console.log(drinkItem);
-
         if ((ingrTemp !== null && ingrTemp !== "") && (measTemp !== null && measTemp !== "")) {
           var ingredientTemp = ingrTemp + ": " + measTemp;
           var ingredientEl = document.createElement('li');
@@ -94,21 +112,8 @@ function printResults(resultObj, rowNum) {
       var instEl = document.createElement('p3');
       instEl.textContent = "Instructions: " + drinkItem.strInstructions;
       resultBody.append(instEl);
-
-      //create spaces between cards
-      /*
-      var evenCard = rowEl.children[0] || false;
-      if(evenCard) {
-        var divTemp = document.createElement('div');
-        divTemp.setAttribute("style","width:10px");
-        rowEl.append(divTemp);
-      }*/
-
       rowEl.append(resultCol);
-
     })
-
-
 }
 
 function searchApi(query) {
@@ -118,7 +123,6 @@ function searchApi(query) {
 
   locQueryUrl = locQueryUrl + '?i=' + query;
 
-  console.log("----->" + locQueryUrl)
   fetch(locQueryUrl)
     .then(response => {
       if (!response.ok) {
@@ -155,5 +159,5 @@ function searchApi(query) {
       console.error(error);
     });
 }
-
-getParams();
+//getParams();
+displayLoading();
