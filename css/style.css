@@ -1,6 +1,6 @@
 .card {
-  width: 450px;
-  height: 400px;  
+  height: 400px;
+  margin: 6px auto;
 }
 
 .loading-msg{
@@ -8,9 +8,18 @@
   font-size: 40px;
 }
 
-.coctail-pic{
+.ct-pic{
   width: 200px; 
   height: 200px;
+}
+
+.ct-ingredient>li {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+p3 {
+  font-size: 12px;
 }
 
 .navbar {

@@ -1,6 +1,6 @@
 var resultContentEl = document.querySelector('#result-content');
 
-var time = 3;
+var time = 1;
 function displayLoading() {
   const load_gif = "https://media.giphy.com/media/sEH3lMz5hMBEc/giphy.gif";
   var messageEl = document.createElement("p3");
@@ -88,12 +88,12 @@ function printResults(resultObj, rowNum) {
       //Add pictures on the card
       var pictureEl = document.createElement('img');
       pictureEl.src = cocktailThumb;
-      pictureEl.setAttribute("class", "coctail-pic col-6");
+      pictureEl.setAttribute("class", "ct-pic col-6");
       gridEl.append(pictureEl);
 
       //Add ingredient list to the card
       var ingredientList = document.createElement('ul');
-      ingredientList.setAttribute("class", "col-6");
+      ingredientList.setAttribute("class", "ct-ingredient col-6");
       gridEl.append(ingredientList);
       //Add ingredients to the list
       for (var i = 1; i < 16; i++) {
