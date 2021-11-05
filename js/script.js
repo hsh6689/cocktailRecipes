@@ -15,4 +15,9 @@ function handleSearchFormSubmit(event) {
   location.assign(queryString);
 }
 
+function displayRandomCT(event) {
+  event.preventDefault();
+
+}
+
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
